@@ -50,7 +50,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
     // "test" command
     if (name === 'test') {
-      port.write("1");
+      port.write(""); // <-- edit this to make the light turn on!!!!!!!!!!!!!!
       let duration = (Math.random() * 2000) + 1600;
       setTimeout(() => port.write("0"), duration);
       // Send a message into the channel where command was triggered from
@@ -58,7 +58,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
           // Fetches a random emoji to send from a helper function
-          content: `light turned on 💡 for ${duration.toFixed(2)} ms`,
+          content: `signal sent to turn light on 💡 for ${duration.toFixed(2)} ms`,
         },
       });
     }
